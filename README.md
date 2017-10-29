@@ -1,1 +1,16 @@
 # booksApi
+
+## Scenario
+
+We are an online retailer specialising in technology books.
+
+We have a legacy system which is proving difficult to maintain and currently has no test coverage that we are looking to replace.
+
+We are looking to build a RESTful json API.
+
+You have been tasked with developing a proof of concept that can demonstrate best practices in modern web development
+ with a focus on designing something which is maintainable and testable.
+ 
+This proof of concept will allow a user to:
+1) Filter books by author and/or category
+2) Create new books
