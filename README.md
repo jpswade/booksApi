@@ -14,3 +14,8 @@ You have been tasked with developing a proof of concept that can demonstrate bes
 This proof of concept will allow a user to:
 1) Filter books by author and/or category
 2) Create new books
+
+## Todo
+
+- Replace with separate categories model, database table and relationships with the existing books model
+- Complete the behat FeatureContext
