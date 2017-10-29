@@ -63,4 +63,26 @@ class BooksController extends Controller
         $book->save();
         return response($book, 201);
     }
+
+    /**
+     * Get just the categories.
+     *
+     * @TODO This is dirty, next version should really be replaced by a relational table.
+     */
+    public function categories() {
+        $book = new Book();
+        $books = $book->select('category')
+            ->get();
+        $results = array();
+        foreach ($books as $book) {
+            $categories = explode(',', $book['category']);
+            foreach ($categories as $category) {
+                $category = trim($category);
+                if (!in_array($category, $results)) {
+                    $results[] = $category;
+                }
+            }
+        }
+        return $results;
+    }
 }
