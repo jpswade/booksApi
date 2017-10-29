@@ -40,7 +40,7 @@ class BooksApiTest extends TestCase
         $query = ['author' => 'Robin Nixon'];
         $response = $this->get('/api/books?' . http_build_query($query));
         $response->assertStatus(200);
-        $totalResults = count(json_decode($response));
+        $totalResults = count(json_decode($response->content()));
         self::assertEquals($totalResults, 2);
         $response->assertSeeText('978-1491918661');
         $response->assertSeeText('978-0596804848');
