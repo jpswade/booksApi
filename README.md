@@ -15,6 +15,24 @@ This proof of concept will allow a user to:
 1) Filter books by author and/or category
 2) Create new books
 
+## Getting started
+
+You'll need to get the mysql database up and running: 
+    
+    $ docker-compose up -d
+
+Now migrate the data:
+
+    $ php artisan migrate
+
+Now let's start laravel web service (demonised):
+
+    $ php artisan serve &
+
+Let's run some tests:
+
+    $ composer test
+
 ## Todo
 
 - Replace with separate categories model, database table and relationships with the existing books model
