@@ -18,3 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/books', 'BooksController@show');
+Route::post('/books', 'BooksController@store');
+Route::get('/categories', 'BooksController@categories');
