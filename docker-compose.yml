@@ -1,0 +1,13 @@
+version: '3.0'
+
+services:
+
+    db:
+        image: mariadb:10.3.2
+        restart: always
+        environment:
+            MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+            MYSQL_USER: api
+            MYSQL_PASSWORD: ChangeM3!
+        ports:
+          - 3306:3306
