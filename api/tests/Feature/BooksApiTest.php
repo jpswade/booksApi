@@ -10,6 +10,16 @@ class BooksApiTest extends TestCase
     use RefreshDatabase;
 
     /**
+     * Setup the test environment.
+     *
+     * @return void
+     */
+    protected function setUp() {
+        parent::setUp();
+        $this->seed();
+    }
+
+    /**
      * A basic test example.
      *
      * @return void
