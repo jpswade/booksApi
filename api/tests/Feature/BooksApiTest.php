@@ -38,7 +38,7 @@ class BooksApiTest extends TestCase
     public function testFilterByAuthor()
     {
         $query = ['author' => 'Robin Nixon'];
-        $response = $this->get('/books?' . http_build_query($query));
+        $response = $this->get('/api/books?' . http_build_query($query));
         $response->assertStatus(200);
         $totalResults = count(json_decode($response));
         self::assertEquals($totalResults, 2);
@@ -53,8 +53,8 @@ class BooksApiTest extends TestCase
      */
     public function testFilterByAuthor2()
     {
-        $author = urlencode('Christopher Negus');
-        $response = $this->get('/api/books?author=' . $author);
+        $query = ['author' => 'Christopher Negus'];
+        $response = $this->get('/api/books?' . http_build_query($query));
         $response->assertStatus(200);
         $resultsTotal = count(json_decode($response->content()));
         $this->assertEquals($resultsTotal, 1);
@@ -80,8 +80,8 @@ class BooksApiTest extends TestCase
      */
     public function testCategoryFilterLinux()
     {
-        $category = 'Linux';
-        $response = $this->get('/api/books?category=' . $category);
+        $query = ['category' => 'Linux'];
+        $response = $this->get('/api/books?' . http_build_query($query));
         $response->assertStatus(200);
         $resultsTotal = count(json_decode($response->content()));
         $this->assertEquals($resultsTotal, 2);
@@ -94,8 +94,8 @@ class BooksApiTest extends TestCase
      */
     public function testCategoryFilterPHP()
     {
-        $category = 'PHP';
-        $response = $this->get('/api/books?category=' . $category);
+        $query = ['category' => 'PHP'];
+        $response = $this->get('/api/books?' . http_build_query($query));
         $response->assertStatus(200);
         $resultsTotal = count(json_decode($response->content()));
         $this->assertEquals($resultsTotal, 1);
@@ -107,9 +107,11 @@ class BooksApiTest extends TestCase
      */
     public function testAuthorCategoryFilter()
     {
-        $author = 'Robin Nixon';
-        $category = 'Linux';
-        $response = $this->get('/api/books?category=' . $category . '&author=' . $author);
+        $query = [
+            'author' => 'Robin Nixon',
+            'category' => 'Linux',
+        ];
+        $response = $this->get('/api/books?' . http_build_query($query));
         $response->assertStatus(200);
         $resultsTotal = count(json_decode($response->content()));
         $this->assertEquals($resultsTotal, 1);
