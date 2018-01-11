@@ -1,0 +1,11 @@
+default:
+  suites:
+    default:
+      path: features
+      contexts: [Behat\MinkExtension\Context\MinkContext]
+  extensions:
+    Behat\MinkExtension:
+      base_url: http://192.168.99.100/
+      sessions:
+        default:
+          goutte: ~
