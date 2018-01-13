@@ -12,16 +12,16 @@ Feature:
       | 978-0596517748 | JavaScript: The Good Parts                                 | Douglas Crockford | Javascript      | 8.99 GBP  |
     And press "submit"
 
+  Scenario: Filter by author, one result
+    When I select "Christopher Negus" from "author"
+    Then the response status code should be 200
+    And the response should contain "978-1118999875"
+
   Scenario: Filter by author, two results
     When I select "Robin Nixon" from "author"
     Then the response status code should be 200
     And the response should contain "978-1491918661"
     And the response should contain "978-0596804848"
-
-  Scenario: Filter by author, one result
-    When I select "Christopher Negus" from "author"
-    Then the response status code should be 200
-    And the response should contain "978-1118999875"
 
   Scenario: List the three categories
     When I go to "/categories"
