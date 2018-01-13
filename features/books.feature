@@ -10,15 +10,17 @@ Feature:
       | 978-0596804848 | Ubuntu: Up and Running: A Power User's Desktop Guide       | Robin Nixon       | Linux           | 12.99 GBP |
       | 978-1118999875 | Linux Bible                                                | Christopher Negus | Linux           | 19.99 GBP |
       | 978-0596517748 | JavaScript: The Good Parts                                 | Douglas Crockford | Javascript      | 8.99 GBP  |
-    And press "submit"
+    And press "add"
 
   Scenario: Filter by author, one result
     When I select "Christopher Negus" from "author"
+    And I press "filter"
     Then the response status code should be 200
     And the response should contain "978-1118999875"
 
   Scenario: Filter by author, two results
     When I select "Robin Nixon" from "author"
+    And I press "filter"
     Then the response status code should be 200
     And the response should contain "978-1491918661"
     And the response should contain "978-0596804848"
@@ -32,18 +34,21 @@ Feature:
 
   Scenario: Filter by category, two results
     When I select "Linux" from "category"
+    And I press "filter"
     Then the response status code should be 200
     And the response should contain "978-0596804848"
     And the response should contain "978-1118999875"
 
   Scenario: Filter by category, one result
     When I select "PHP" from "category"
+    And I press "filter"
     Then the response status code should be 200
     And the response should contain "978-1491918661"
 
   Scenario: Filter by author and category, one result
     When I select "Robin Nixon" from "author"
     When I select "Linux" from "category"
+    And I press "filter"
     Then the response status code should be 200
     And the response should contain "978-0596804848"
 
@@ -51,7 +56,7 @@ Feature:
     Given I fill in the following:
       | ISBN           | Title                                       | Author        | Category | Price     |
       | 978-1491905012 | Modern PHP: New Features and Good Practices | Josh Lockhart | PHP      | 18.99 GBP |
-    And press "submit"
+    And press "add"
     Then the response status code should be 201
     And the response should contain "978-1491905012"
     And the response should contain "Modern PHP: New Features and Good Practices"
@@ -63,5 +68,6 @@ Feature:
     Given I fill in the following:
       | ISBN                         | Title                                       | Author        | Category | Price     |
       | 978-INVALID-ISB N-1491905012 | Modern PHP: New Features and Good Practices | Josh Lockhart | PHP      | 18.99 GBP |
+    And I press "add"
     Then the response status code should be 400
     And the response should contain "Invalid isbn"
